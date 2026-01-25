@@ -46,4 +46,18 @@ public class PatientController {
 
         return ResponseEntity.ok(patient);
     }
+    @GetMapping("/search/by-mobile")
+    public ResponseEntity<Patient> getByMobile(@RequestParam String mobile) {
+        return patientService.getPatientByMobile(mobile)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/search/by-aadhar")
+    public ResponseEntity<Patient> getByAadhar(@RequestParam String aadharNumber) {
+        return patientService.getPatientByAadhar(aadharNumber)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 }

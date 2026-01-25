@@ -14,6 +14,9 @@ public interface PatientRepository extends JpaRepository<Patient, String> {
     // Search by mobile (exact)
     Optional<Patient> findByMobile(String mobile);
 
+        // search by aadhar num (exact)
+    Optional<Patient> findByAadharNumber(String aadharNumber);
+
     // Duplicate checks
     boolean existsByAadharNumber(String aadharNumber);
     boolean existsByMobile(String mobile);

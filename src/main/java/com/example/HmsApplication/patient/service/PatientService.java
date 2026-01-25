@@ -27,4 +27,13 @@ public class PatientService {
     public Optional<Patient> getPatientById(String patientId) {
         return patientRepository.findById(patientId);
     }
+    public Optional<Patient> getPatientByMobile(String mobile) {
+        return patientRepository.findByMobile(mobile);
+    }
+    public Optional<Patient> getPatientByAadhar(String aadharNumber) {
+        return patientRepository.findByAadharNumber(aadharNumber);
+    }
+
+
+
 }
