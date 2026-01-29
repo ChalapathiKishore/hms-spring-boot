@@ -60,4 +60,22 @@ public class PatientController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    // UPDATE ✅
+    @PutMapping("/{patientId}")
+    public ResponseEntity<Patient> updatePatient(
+            @PathVariable String patientId,
+            @Valid @RequestBody Patient patient) {
+
+        return ResponseEntity.ok(
+                patientService.updatePatient(patientId, patient)
+        );
+    }
+
+    // DELETE ✅
+    @DeleteMapping("/{patientId}")
+    public ResponseEntity<String> deletePatient(@PathVariable String patientId) {
+        patientService.deletePatient(patientId);
+        return ResponseEntity.ok("Patient deleted successfully");
+    }
+
 }

@@ -34,6 +34,33 @@ public class PatientService {
         return patientRepository.findByAadharNumber(aadharNumber);
     }
 
+    // UPDATE ✅
+    public Patient updatePatient(String patientId, Patient updatedPatient) {
+
+        Patient existingPatient = patientRepository.findById(patientId)
+                .orElseThrow(() -> new RuntimeException("Patient not found with ID: " + patientId));
+
+        // ❌ Patient ID must NOT change
+        existingPatient.setFullName(updatedPatient.getFullName());
+        existingPatient.setGender(updatedPatient.getGender());
+        existingPatient.setAge(updatedPatient.getAge());
+        existingPatient.setDob(updatedPatient.getDob());
+        existingPatient.setBloodGroup(updatedPatient.getBloodGroup());
+        existingPatient.setMobile(updatedPatient.getMobile());
+        existingPatient.setAadharNumber(updatedPatient.getAadharNumber());
+        existingPatient.setRfidTagId(updatedPatient.getRfidTagId());
+        existingPatient.setTypeOfPatient(updatedPatient.getTypeOfPatient());
+
+        return patientRepository.save(existingPatient);
+    }
+
+    // DELETE ✅
+    public void deletePatient(String patientId) {
+        if (!patientRepository.existsById(patientId)) {
+            throw new RuntimeException("Patient not found with ID: " + patientId);
+        }
+        patientRepository.deleteById(patientId);
+    }
 
 
 }
